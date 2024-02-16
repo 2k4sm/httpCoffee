@@ -1,9 +1,6 @@
-package com.sm2k4.httpcoffee.Coffees;
+package com.sm2k4.httpcoffee.model;
 
 import java.sql.Date;
-
-import com.sm2k4.httpcoffee.Transactions.Transactions;
-import com.sm2k4.httpcoffee.Users.Users;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
