@@ -8,7 +8,7 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.2k4sm</groupId>
+	<groupId>com.sm2k4</groupId>
 	<artifactId>httpcoffee</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>httpcoffee</name>

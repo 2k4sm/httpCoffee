@@ -1,4 +1,4 @@
-package com.k4sm.httpcoffee;
+package com.sm2k4.httpcoffee;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
