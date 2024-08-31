@@ -9,9 +9,6 @@ type User struct {
 	Name          string        `json:"user_name"`
 	Email         string        `json:"email"`
 	Password      string        `json:"password"`
-	LastOrder     string        `json:"last_order"`
-	Favourite     string        `json:"favourite"`
-	Revenue       string        `json:"-"`
 	Orders        []Payment     `json:"orders"`
 	VisitedHouses []CoffeeHouse `json:"visited_houses"`
 }
@@ -50,9 +47,6 @@ func ParseFromUserEntity(user entities.User) User {
 		Name:          user.Name,
 		Email:         user.Email,
 		Password:      user.Password,
-		LastOrder:     user.LastOrder,
-		Favourite:     user.Favourite,
-		Revenue:       user.Revenue,
 		Orders:        payments,
 		VisitedHouses: houses,
 	}
