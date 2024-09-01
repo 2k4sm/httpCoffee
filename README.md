@@ -16,6 +16,25 @@ httpcoffee is a designed to help manage coffee chains, developed using Go, Postg
    ```bash
    go mod tidy
    ```
+4. **env variables.**
+      ```json
+      HOST=<host>
+      PORT=<server_port>
+      USERNAME=<db_uname>
+      PASSWORD=<db_passwd>
+      DB=<db_name>
+      DBPORT=5432
+      SSLMODE=disable
+      VERSION=v0
+      ```
+      - Then Run
+        ```bash
+        export $(cat .env | xargs)
+        ```
+5. **Start PostgreSQL using compose.yaml**
+   ```bash
+   docker compose up --build
+   ```
 4 **Run the Application:**
 
   ```bash
