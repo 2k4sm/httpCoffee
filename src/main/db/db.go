@@ -37,7 +37,7 @@ func autoMigrateDB(db *gorm.DB) {
 	paymentModel := models.Payment{}
 	coffeeHouseModel := models.CoffeeHouse{}
 
-	err := db.AutoMigrate(userModel, coffeeModel, paymentModel, coffeeHouseModel)
+	err := db.AutoMigrate(coffeeModel, userModel, coffeeHouseModel, paymentModel)
 	if err != nil {
 		log.Warnf("error automigrating models :%s", err)
 	}

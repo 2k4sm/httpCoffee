@@ -7,20 +7,20 @@ import (
 )
 
 type Payment struct {
-	Id            uint      `json:"id"`
-	UserID        uint      `json:"user_id,omitempty"`
-	CoffeeHouseID uint      `json:"coffee_house_id,omitempty"`
-	Cost          int64     `json:"cost,omitempty"`
-	Date          time.Time `json:"date,omitempty"`
-	Items         []Coffee  `json:"items,omitempty"`
+	Id      uint      `json:"id"`
+	UserID  uint      `json:"user_id,omitempty"`
+	HouseID uint      `json:"house_id,omitempty"`
+	Cost    int64     `json:"cost,omitempty"`
+	Date    time.Time `json:"date,omitempty"`
+	Items   []Coffee  `json:"items,omitempty"`
 }
 
 type CreatePayment struct {
-	UserID        uint              `json:"user_id,omitempty"`
-	CoffeeHouseID uint              `json:"coffee_house_id,omitempty"`
-	Cost          int64             `json:"cost,omitempty"`
-	Date          time.Time         `json:"date,omitempty"`
-	Items         []entities.Coffee `json:"items,omitempty"`
+	UserID  uint              `json:"user_id,omitempty"`
+	HouseID uint              `json:"house_id,omitempty"`
+	Cost    int64             `json:"cost,omitempty"`
+	Date    time.Time         `json:"date,omitempty"`
+	Items   []entities.Coffee `json:"items,omitempty"`
 }
 
 func ParseFromPaymentEntity(payment entities.Payment) Payment {
@@ -30,12 +30,12 @@ func ParseFromPaymentEntity(payment entities.Payment) Payment {
 		items = append(items, ParseFromCoffeeEntity(item))
 	}
 	payments := Payment{
-		Id:            payment.ID,
-		UserID:        payment.UserID,
-		CoffeeHouseID: payment.CoffeeHouseID,
-		Cost:          payment.Cost,
-		Date:          payment.Date,
-		Items:         items,
+		Id:      payment.ID,
+		UserID:  payment.UserID,
+		HouseID: payment.HouseID,
+		Cost:    payment.Cost,
+		Date:    payment.Date,
+		Items:   items,
 	}
 	return payments
 }
@@ -43,11 +43,11 @@ func ParseFromPaymentEntity(payment entities.Payment) Payment {
 func ParseToPaymentEntity(payment CreatePayment) entities.Payment {
 
 	payments := entities.Payment{
-		UserID:        payment.UserID,
-		CoffeeHouseID: payment.CoffeeHouseID,
-		Cost:          payment.Cost,
-		Date:          payment.Date,
-		Items:         payment.Items,
+		UserID:  payment.UserID,
+		HouseID: payment.HouseID,
+		Cost:    payment.Cost,
+		Date:    payment.Date,
+		Items:   payment.Items,
 	}
 	return payments
 }

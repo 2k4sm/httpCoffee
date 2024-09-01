@@ -5,12 +5,11 @@ import (
 )
 
 type User struct {
-	Id            uint          `json:"id"`
-	Name          string        `json:"user_name"`
-	Email         string        `json:"email"`
-	Password      string        `json:"password"`
-	Orders        []Payment     `json:"orders"`
-	VisitedHouses []CoffeeHouse `json:"visited_houses"`
+	Id       uint      `json:"id"`
+	Name     string    `json:"user_name"`
+	Email    string    `json:"email"`
+	Password string    `json:"password"`
+	Orders   []Payment `json:"orders"`
 }
 
 type CreateUser struct {
@@ -37,17 +36,11 @@ func ParseFromUserEntity(user entities.User) User {
 		payments = append(payments, ParseFromPaymentEntity(payment))
 	}
 
-	houses := []CoffeeHouse{}
-	for _, house := range user.VisitedHouses {
-		houses = append(houses, ParseFromHouseEntity(house))
-	}
-
 	return User{
-		Id:            user.ID,
-		Name:          user.Name,
-		Email:         user.Email,
-		Password:      user.Password,
-		Orders:        payments,
-		VisitedHouses: houses,
+		Id:       user.ID,
+		Name:     user.Name,
+		Email:    user.Email,
+		Password: user.Password,
+		Orders:   payments,
 	}
 }

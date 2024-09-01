@@ -28,7 +28,7 @@ func NewUserRepository(db *gorm.DB) UserRepositoryInterface {
 func (u *userRepository) FindAll() []entities.User {
 	var users []entities.User
 
-	u.Db.Preload("Orders").Preload("VisitedHouses").Find(&users)
+	u.Db.Preload("Orders").Find(&users)
 
 	if len(users) == 0 {
 		log.Error("No users found")
@@ -42,7 +42,7 @@ func (u *userRepository) FindAll() []entities.User {
 func (u *userRepository) FindById(id uint) entities.User {
 	var user entities.User
 
-	u.Db.Preload("Orders").Preload("VisitedHouses").First(&user, id)
+	u.Db.Preload("Orders").First(&user, id)
 
 	if user.ID == 0 {
 		log.Infof("No user found with id: %s", id)
@@ -56,7 +56,7 @@ func (u *userRepository) FindById(id uint) entities.User {
 func (u *userRepository) FindByName(name string) entities.User {
 	var user entities.User
 
-	u.Db.Preload("Orders").Preload("VisitedHouses").Where("name = ?", name).First(&user)
+	u.Db.Preload("Orders").Where("name = ?", name).First(&user)
 
 	if user.ID == 0 {
 		log.Infof("No user found with name: %s", name)
@@ -70,7 +70,7 @@ func (u *userRepository) FindByName(name string) entities.User {
 func (u *userRepository) FindByEmail(email string) entities.User {
 	var user entities.User
 
-	u.Db.Preload("Orders").Preload("VisitedHouses").Where("email = ?", email).First(&user)
+	u.Db.Preload("Orders").Where("email = ?", email).First(&user)
 
 	if user.ID == 0 {
 		log.Infof("No user found with email: %s", email)
@@ -96,7 +96,7 @@ func (u *userRepository) CreateUser(user entities.User) entities.User {
 func (u *userRepository) DeleteUser(id uint) (entities.User, error) {
 	userToDel := entities.User{}
 
-	u.Db.Preload("Orders").Preload("VisitedHouses").First(&userToDel, id)
+	u.Db.Preload("Orders").First(&userToDel, id)
 
 	if userToDel.ID == 0 {
 		log.Infof("No user found with id: %s", id)

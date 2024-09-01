@@ -26,7 +26,7 @@ func NewHouseRepository(db *gorm.DB) HouseRepositoryInterface {
 
 func (h *houseRepository) FindAll() []entities.CoffeeHouse {
 	var houses []entities.CoffeeHouse
-	h.Db.Preload("AvailableCoffees").Preload("Payments").Find(&houses)
+	h.Db.Preload("AvailableCoffees").Find(&houses)
 
 	if len(houses) == 0 {
 		log.Info("No houses found")
@@ -38,7 +38,7 @@ func (h *houseRepository) FindAll() []entities.CoffeeHouse {
 func (h *houseRepository) FindById(id uint) entities.CoffeeHouse {
 	var house entities.CoffeeHouse
 
-	h.Db.Preload("AvailableCoffees").Preload("Payments").First(&house, id)
+	h.Db.Preload("AvailableCoffees").First(&house, id)
 
 	if house.ID == 0 {
 		log.Info(gorm.ErrRecordNotFound)
@@ -50,7 +50,7 @@ func (h *houseRepository) FindById(id uint) entities.CoffeeHouse {
 func (h *houseRepository) FindByName(houseName string) entities.CoffeeHouse {
 	var house entities.CoffeeHouse
 
-	h.Db.Preload("AvailableCoffees").Preload("Payments").First(&house, "name = ?", houseName)
+	h.Db.Preload("AvailableCoffees").First(&house, "name = ?", houseName)
 
 	if house.ID == 0 {
 		log.Info(gorm.ErrRecordNotFound)
@@ -64,7 +64,7 @@ func (h *houseRepository) Save(newHouse *entities.CoffeeHouse) entities.CoffeeHo
 		log.Info(err.Error)
 	}
 	var createdHouse entities.CoffeeHouse
-	h.Db.Preload("AvailableCoffees").Preload("Payments").First(&createdHouse, "name = ?", newHouse.Name)
+	h.Db.Preload("AvailableCoffees").First(&createdHouse, "name = ?", newHouse.Name)
 
 	return createdHouse
 }
@@ -73,7 +73,7 @@ func (h *houseRepository) DeleteById(id uint) (entities.CoffeeHouse, error) {
 
 	var houseToDel entities.CoffeeHouse
 
-	h.Db.Preload("AvailableCoffees").Preload("Payments").First(&houseToDel, id)
+	h.Db.Preload("AvailableCoffees").First(&houseToDel, id)
 
 	if houseToDel.ID == 0 {
 		return houseToDel, gorm.ErrRecordNotFound
